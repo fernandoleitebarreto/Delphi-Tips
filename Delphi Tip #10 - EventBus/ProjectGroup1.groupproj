@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{5FC5531C-D359-4FEE-B39D-AC54DD9A0AE0}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="VCLSample\VCLSample.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="FMXMenu\FMXMenu_EventBus.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="VCLSample">
+        <MSBuild Projects="VCLSample\VCLSample.dproj"/>
+    </Target>
+    <Target Name="VCLSample:Clean">
+        <MSBuild Projects="VCLSample\VCLSample.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="VCLSample:Make">
+        <MSBuild Projects="VCLSample\VCLSample.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="FMXMenu_EventBus">
+        <MSBuild Projects="FMXMenu\FMXMenu_EventBus.dproj"/>
+    </Target>
+    <Target Name="FMXMenu_EventBus:Clean">
+        <MSBuild Projects="FMXMenu\FMXMenu_EventBus.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="FMXMenu_EventBus:Make">
+        <MSBuild Projects="FMXMenu\FMXMenu_EventBus.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="VCLSample;FMXMenu_EventBus"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="VCLSample:Clean;FMXMenu_EventBus:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="VCLSample:Make;FMXMenu_EventBus:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
